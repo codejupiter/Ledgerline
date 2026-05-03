@@ -2,6 +2,10 @@
 
 Real-time cryptocurrency trading interface. Streams live BTC/USDT data from Binance over WebSocket and renders it without dropped frames or layout shift.
 
+**[→ Live demo](https://ledgerline-omega.vercel.app)** · Live BTC/USDT from Binance
+
+![Status](https://img.shields.io/badge/status-live-8FE3B2) ![Stack](https://img.shields.io/badge/React-18-c8c8be) ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-c8c8be) ![Vite](https://img.shields.io/badge/Vite-5-c8c8be)
+
 ## What it does
 
 - **Live candlestick chart** — 1-second OHLCV candles built from the raw trade tick stream, rendered with TradingView's Lightweight Charts.
