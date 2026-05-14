@@ -20,22 +20,24 @@ interface Props {
 const ROW_HEIGHT = 20;
 
 export function TradesTape({ symbol, maxTrades = 500, height = 380 }: Props) {
-  const [trades, setTrades] = useState<Trade[]>([]);
+  const [tradeState, setTradeState] = useState<{ symbol: string; trades: Trade[] }>({ symbol, trades: [] });
   const tradesRef = useRef<Trade[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollTop, setScrollTop] = useState(0);
+  const trades = tradeState.symbol === symbol ? tradeState.trades : [];
 
   useEffect(() => {
     tradesRef.current = [];
-    setTrades([]);
     const client = getBinanceClient();
     const stream = `${symbol.toLowerCase()}@trade`;
 
     // Throttle React updates to ~10fps to avoid render thrash.
     let pending = false;
+    let flushTimer: number | null = null;
     const flush = () => {
       pending = false;
-      setTrades([...tradesRef.current]);
+      setTradeState({ symbol, trades: [...tradesRef.current] });
+      flushTimer = null;
     };
 
     const unsub = client.subscribe(stream, (msg) => {
@@ -52,11 +54,12 @@ export function TradesTape({ symbol, maxTrades = 500, height = 380 }: Props) {
       }
       if (!pending) {
         pending = true;
-        setTimeout(flush, 100);
+        flushTimer = window.setTimeout(flush, 100);
       }
     });
 
     return () => {
+      if (flushTimer !== null) window.clearTimeout(flushTimer);
       unsub();
     };
   }, [symbol, maxTrades]);

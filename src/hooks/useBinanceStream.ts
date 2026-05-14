@@ -10,7 +10,10 @@ export function useBinanceStream<T = any>(
   handler: (data: T) => void
 ) {
   const ref = useRef(handler);
-  ref.current = handler;
+
+  useEffect(() => {
+    ref.current = handler;
+  }, [handler]);
 
   useEffect(() => {
     if (!stream) return;
