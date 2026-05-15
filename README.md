@@ -6,11 +6,11 @@ Real-time crypto trading interface engineered for zero layout shift and zero dro
 
 ![Ledgerline demo](./demo.gif)
 
-![Stack](https://img.shields.io/badge/React-18-c8c8be) ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-c8c8be) ![Vite](https://img.shields.io/badge/Vite-5-c8c8be)
+![Stack](https://img.shields.io/badge/React-18-c8c8be) ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-c8c8be) ![Vite](https://img.shields.io/badge/Vite-8-c8c8be)
 
 ## Stack
 
-React 18 · TypeScript 5.6 · Vite 5 · [Lightweight Charts](https://github.com/tradingview/lightweight-charts) (TradingView's production chart library) · Binance public WebSocket API.
+React 18 · TypeScript 5.6 · Vite 8 · [Lightweight Charts](https://github.com/tradingview/lightweight-charts) (TradingView's production chart library) · Binance public WebSocket API.
 
 ## What it does
 
@@ -79,11 +79,31 @@ This keeps Cumulative Layout Shift at 0 throughout the load sequence.
 - Trades list is virtualized (only visible rows + 4-row buffer mount)
 - The performance overlay updates at ~5 Hz, not per-frame
 
+### Production verification
+
+Ledgerline has three layers of validation:
+
+- Unit tests cover candle aggregation, order book math, subscriber replay/unsubscribe behavior, and invalid feed handling.
+- Production smoke tests run against `vite preview` in desktop and mobile Chromium.
+- The smoke suite mocks the Binance WebSocket feed in-browser so CI verifies rendering, virtualization, responsive layout, chart mounting, order book hydration, and trade tape behavior without depending on external network availability.
+
+## Quality Gates
+
+```bash
+npm run lint       # ESLint + React hooks checks
+npm run typecheck  # TypeScript project build
+npm run test       # Vitest realtime engine coverage
+npm run build      # Production Vite build
+npm run smoke      # Playwright desktop/mobile smoke tests
+```
+
+GitHub Actions runs production audit, lint, typecheck, unit tests, build, installs Chromium, then executes the Playwright smoke suite against the production preview server.
+
 ## Running
 
 ```bash
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 Open http://localhost:5174/. You'll see live BTC/USDT data flowing in within a second or two — the chart fills as candles aggregate, the order book and trades tape populate immediately.

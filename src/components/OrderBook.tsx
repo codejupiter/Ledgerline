@@ -41,6 +41,7 @@ export function OrderBook({ symbol, levels = 15 }: Props) {
   if (!book) {
     return (
       <div
+        data-testid="order-book-loading"
         style={{
           height: reservedHeight,
           display: 'flex',
@@ -60,7 +61,10 @@ export function OrderBook({ symbol, levels = 15 }: Props) {
   const maxCum = book.maxCum || 1;
 
   return (
-    <div style={{ height: reservedHeight, display: 'flex', flexDirection: 'column' }}>
+    <div
+      data-testid="order-book"
+      style={{ height: reservedHeight, display: 'flex', flexDirection: 'column' }}
+    >
       <div
         style={{
           display: 'grid',
@@ -143,6 +147,7 @@ function Row({ price, size, cumSize, maxCum, side }: RowProps) {
 
   return (
     <div
+      data-testid="order-row"
       style={{
         position: 'relative',
         display: 'grid',

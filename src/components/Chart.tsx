@@ -101,6 +101,7 @@ export function Chart({ symbol, bucketMs = 1000 }: Props) {
 
   return (
     <div
+      data-testid="price-chart"
       ref={containerRef}
       style={{
         width: '100%',

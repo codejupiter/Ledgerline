@@ -74,7 +74,10 @@ export function TradesTape({ symbol, maxTrades = 500, height = 380 }: Props) {
   const visible = trades.slice(startIdx, endIdx);
 
   return (
-    <div style={{ height: height + 28, display: 'flex', flexDirection: 'column' }}>
+    <div
+      data-testid="trades-tape"
+      style={{ height: height + 28, display: 'flex', flexDirection: 'column' }}
+    >
       <div
         style={{
           display: 'grid',
@@ -93,6 +96,7 @@ export function TradesTape({ symbol, maxTrades = 500, height = 380 }: Props) {
       </div>
 
       <div
+        data-testid="trades-scroll"
         ref={containerRef}
         onScroll={onScroll}
         style={{
@@ -142,6 +146,7 @@ function TradeRow({ trade }: { trade: Trade }) {
   const time = `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
   return (
     <div
+      data-testid="trade-row"
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',

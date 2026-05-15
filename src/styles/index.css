@@ -35,3 +35,257 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #3a3a36;
 }
+
+.ledgerline-app {
+  height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #0a0a09;
+  color: #c8c8be;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.ledgerline-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 12px 24px;
+  border-bottom: 1px solid #1a1a17;
+  background: #0a0a09;
+  flex: 0 0 auto;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.brand-symbol {
+  font-size: 11px;
+  color: #5a5a52;
+  text-transform: uppercase;
+}
+
+.ticker-strip {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ticker-field {
+  min-width: 110px;
+  flex: 0 0 auto;
+}
+
+.ticker-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5a5a52;
+}
+
+.ticker-value {
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.ticker-value-large {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.ledgerline-main {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+}
+
+.chart-pane {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #1a1a17;
+}
+
+.panel-label {
+  padding: 8px 16px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #5a5a52;
+  border-bottom: 1px solid #1a1a17;
+  flex: 0 0 auto;
+}
+
+.chart-label {
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.chart-region {
+  position: relative;
+  flex: 1;
+  min-height: 300px;
+}
+
+.market-sidebar {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.order-panel {
+  border-bottom: 1px solid #1a1a17;
+  flex: 0 1 auto;
+  min-height: 0;
+}
+
+.trades-panel {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.perf-overlay {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+}
+
+@media (max-width: 900px) {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    height: auto;
+  }
+
+  body {
+    overflow: auto;
+  }
+
+  .ledgerline-app {
+    height: auto;
+    overflow: visible;
+  }
+
+  .ledgerline-header {
+    height: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .brand-lockup {
+    width: 100%;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .ticker-strip {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+    overflow: visible;
+  }
+
+  .ticker-field {
+    min-width: 0;
+  }
+
+  .ticker-value-large {
+    font-size: 20px;
+  }
+
+  .ledgerline-main {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .chart-pane {
+    min-height: 420px;
+    border-right: 0;
+    border-bottom: 1px solid #1a1a17;
+  }
+
+  .chart-region {
+    min-height: 388px;
+  }
+
+  .market-sidebar,
+  .trades-panel {
+    overflow: visible;
+  }
+
+  .perf-overlay {
+    position: sticky;
+    inset: auto;
+    margin: 12px;
+    width: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .ledgerline-header {
+    padding: 12px;
+  }
+
+  .brand-lockup {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ticker-strip {
+    gap: 10px 12px;
+  }
+
+  .ticker-field {
+    min-width: 0;
+  }
+
+  .ticker-value {
+    font-size: 13px;
+  }
+
+  .ticker-value-large {
+    font-size: 18px;
+  }
+
+  .panel-label {
+    padding-inline: 12px;
+  }
+
+  .chart-pane {
+    min-height: 360px;
+  }
+
+  .chart-region {
+    min-height: 328px;
+  }
+}

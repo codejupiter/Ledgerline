@@ -39,27 +39,21 @@ export function Header({ symbol }: Props) {
 
   return (
     <header
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 32,
-        padding: '12px 24px',
-        borderBottom: '1px solid #1a1a17',
-        height: 64,
-        background: '#0a0a09',
-      }}
+      data-testid="market-header"
+      className="ledgerline-header"
     >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
-        <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: '0.02em' }}>
+      <div className="brand-lockup">
+        <div className="brand-name">
           Ledgerline
         </div>
-        <div style={{ fontSize: 11, color: '#5a5a52', textTransform: 'uppercase' }}>
+        <div className="brand-symbol">
           Live · {symbol}
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, flex: 1 }}>
+      <div className="ticker-strip" aria-label="Market ticker">
         <Field
+          id="last"
           label="Last"
           value={
             ticker
@@ -70,6 +64,7 @@ export function Header({ symbol }: Props) {
           large
         />
         <Field
+          id="change"
           label="24h Change"
           value={
             ticker
@@ -79,6 +74,7 @@ export function Header({ symbol }: Props) {
           valueColor={changeColor}
         />
         <Field
+          id="high"
           label="24h High"
           value={
             ticker
@@ -87,6 +83,7 @@ export function Header({ symbol }: Props) {
           }
         />
         <Field
+          id="low"
           label="24h Low"
           value={
             ticker
@@ -95,6 +92,7 @@ export function Header({ symbol }: Props) {
           }
         />
         <Field
+          id="volume"
           label="24h Vol (BTC)"
           value={ticker ? ticker.volume.toFixed(2) : '—'}
         />
@@ -104,34 +102,27 @@ export function Header({ symbol }: Props) {
 }
 
 function Field({
+  id,
   label,
   value,
   valueColor,
   large,
 }: {
+  id: string;
   label: string;
   value: string;
   valueColor?: string;
   large?: boolean;
 }) {
   return (
-    <div style={{ minWidth: 110 }}>
-      <div
-        style={{
-          fontSize: 10,
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          color: '#5a5a52',
-        }}
-      >
+    <div className="ticker-field" data-testid={`ticker-${id}`}>
+      <div className="ticker-label">
         {label}
       </div>
       <div
+        className={large ? 'ticker-value ticker-value-large' : 'ticker-value'}
         style={{
-          fontSize: large ? 22 : 14,
-          fontVariantNumeric: 'tabular-nums',
           color: valueColor ?? '#c8c8be',
-          fontWeight: large ? 600 : 400,
         }}
       >
         {value}

@@ -38,12 +38,11 @@ export function PerfOverlay() {
 
   return (
     <div
+      data-testid="perf-overlay"
+      className="perf-overlay"
       role="status"
       aria-label="Performance metrics"
       style={{
-        position: 'fixed',
-        top: 16,
-        right: 16,
         background: 'rgba(15, 15, 13, 0.85)',
         backdropFilter: 'blur(8px)',
         border: '1px solid #1a1a17',
