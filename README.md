@@ -12,6 +12,10 @@ Real-time crypto trading interface engineered for zero layout shift and zero dro
 
 React 18 · TypeScript 5.6 · Vite 8 · [Lightweight Charts](https://github.com/tradingview/lightweight-charts) (TradingView's production chart library) · Binance public WebSocket API.
 
+## Documentation
+
+- [Architecture](./docs/ARCHITECTURE.md) — realtime flow, WebSocket client, data engines, rendering strategy, layout stability, backend target, and interview talking points.
+
 ## What it does
 
 - **Live candlestick chart** — 1-second OHLCV candles built from the raw trade tick stream, rendered with TradingView's Lightweight Charts.
